@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 class BinarySearch
 {
-    public function search(array $list, int $item)
+    public const int TO_FIND = 42;
+    public function search(array $list, int $item): float|false
     {
         $low = 0;
         $high = count($list) - 1;
@@ -14,7 +15,7 @@ class BinarySearch
             $guess = $list[$mid];
 
             if ($guess === $item) {
-                return $mid;
+                return $item;
             }
 
             if ($guess > $item) {
@@ -30,4 +31,4 @@ class BinarySearch
 
 $testList = range(1, 100);
 $binarySearch = new BinarySearch();
-print $binarySearch->search($testList, 42);
+print $binarySearch->search($testList, BinarySearch::TO_FIND) . PHP_EOL;

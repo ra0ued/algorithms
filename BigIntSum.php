@@ -3,8 +3,6 @@
 class BigIntSum
 {
     /**
-     *
-     *
      * @param string $input
      * @return string
      */
@@ -32,16 +30,16 @@ class BigIntSum
 
         for ($i = 0, $n = strlen($out); $i < $n; $i++) {
             $temp = (integer)$in[$i] + (integer)$out[$i];
+
             if ($temp >= $base) {
                 $output[$i + 1] = 1;
                 $temp -= $base;
             }
+
             $output[$i] += $temp;
         }
 
-        $result = implode('', array_reverse($output));
-
-        return $result;
+        return implode('', array_reverse($output));
     }
 
     /**

@@ -8,12 +8,12 @@ class Elf
     /**
      * @var int $address
      */
-    private $address = 0;
+    private int $address = 0;
 
     /**
      * @var array $intCode
      */
-    private $intCode;
+    private array $intCode;
 
     /**
      * Elf constructor.
@@ -24,7 +24,7 @@ class Elf
         $this->intCode = array_map('intval', explode(',', $intCode));
     }
 
-    public function handle()
+    public function handle(): void
     {
         while ($this->address < $this->getCodeLength()) {
             $this->calculate($this->read());
@@ -36,7 +36,7 @@ class Elf
     /**
      * @param int $opcode
      */
-    public function calculate(int $opcode)
+    public function calculate(int $opcode): void
     {
         switch ($opcode) {
             case 1:
@@ -112,7 +112,7 @@ class Elf
      * @param int $value
      * @param null $address
      */
-    public function write(int $value, $address = null)
+    public function write(int $value, $address = null): void
     {
         if (is_null($address)) {
             $address = $this->address;
@@ -130,7 +130,7 @@ $elf = new Elf($input);
 $elf->write(12, 1);
 $elf->write(2, 2);
 $elf->handle();
-echo 'Part 1: ' . $elf->getIntCode()[0];
+echo 'Part 1: ' . $elf->getIntCode()[0] . PHP_EOL;
 
 
 /**
@@ -144,7 +144,7 @@ for ($noun = 0; $noun <= 99; $noun++) {
         $elf->handle();
 
         if ($elf->getIntCode()[0] === 19690720) {
-            echo 'Part 2: ' . (100 * $noun + $verb);
+            echo 'Part 2: ' . (100 * $noun + $verb) . PHP_EOL;
         }
     }
 }

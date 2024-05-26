@@ -1,3 +1,3 @@
-# Tests
+# Algorithms and tests
 
-Repo for test tasks.
+Repo for reproducing algorithms I read about and for some test tasks which I met while technical interviews.

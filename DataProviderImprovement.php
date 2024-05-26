@@ -22,7 +22,7 @@ interface Response
 
 class HTMLResponse implements Response
 {
-    public function toArray()
+    public function toArray(): array
     {
         return [];
     }
@@ -63,9 +63,7 @@ class DataProvider implements Provider
      */
     public function get(Request $request): Response
     {
-        $response = new HTMLResponse();
-
-        return $response;
+        return new HTMLResponse();
     }
 }
 
@@ -74,6 +72,7 @@ namespace src\App\Provider;
 use DateTime;
 use Psr\Cache\CacheItemPoolInterface;
 use Psr\Log\LoggerInterface;
+use Throwable;
 
 class CacheDataProvider implements Provider
 {
@@ -121,7 +120,7 @@ class CacheDataProvider implements Provider
                 );
 
             return $result;
-        } catch (\Throwable $e) {
+        } catch (Throwable $e) {
             $this->logger->critical($e->getMessage());
 
             return new HTMLResponse();
@@ -132,7 +131,7 @@ class CacheDataProvider implements Provider
      * @param array $input
      * @return string
      */
-    private function getCacheKey(array $input)
+    private function getCacheKey(array $input): string
     {
         return md5(json_encode($input));
     }
